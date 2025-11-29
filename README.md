@@ -36,7 +36,7 @@ proyecto/
 - Presionar "q" para detener el procesamiento
 - El vídeo se mostrará en una ventana de OpenCV
 
-### Resultado
+### Resultados
 
 
 https://github.com/user-attachments/assets/fd438348-9326-4cbd-8239-80b57837a341
@@ -59,11 +59,6 @@ Velocidad Global: 84.1 km/h (min: 38.2, max: 145.0)
 ============================================================
 ```
 
-
-### RESULTADOS FINALES
-
-
---------------------------------------------------------------
 
 ## Autores
 - Jaime Ercilla Martin
