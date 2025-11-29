@@ -39,7 +39,7 @@ proyecto/
 ### Resultado
 
 
-![Descripción opcional](https://i.imgur.com/SW43aGF.gif)
+![Descripción del GIF](https://i.imgur.com/SW43aGF.gif)
 
 
 
