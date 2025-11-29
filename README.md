@@ -39,8 +39,7 @@ proyecto/
 ### Resultado
 
 
-[![Demo](https://i.imgur.com/ocitndh.gif)](https://imgur.com/a/ocitndh)
-
+![Demo](https://i.imgur.com/Ix99uX9.gif)
 
 
 
