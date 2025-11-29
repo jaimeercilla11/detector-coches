@@ -57,6 +57,8 @@ proyecto/
 
 TIMEOUT, MAX_DIST y otros parámetros ajustan la sensibilidad y comportamiento del sistema.
 
+---
+
 ### Flujo del Sistema
 1. Se carga el vídeo y se calcula un fondo promedio para la sustracción de fondo inicial.
 
@@ -71,6 +73,8 @@ TIMEOUT, MAX_DIST y otros parámetros ajustan la sensibilidad y comportamiento d
 6. Periódicamente se limpian vehículos inactivos.
 
 7. Al final se muestran estadísticas de conteo y velocidades por carril.
+
+---
 
 ### Resultados
 
