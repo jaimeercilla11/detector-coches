@@ -15,11 +15,11 @@ proyecto/
 
 │
 
-├── prueba_detector_coches.ipynb    # Notebook principal
+├── prueba_detector_coches.ipynb      # Notebook principal
 
-├── trafico01.mp4                   # Vídeo de entrada
+├── trafico01.mp4                     # Vídeo de entrada
 
-└── README.md                       # Este archivo
+└── README.md                         # Este archivo
 
 ### Ejecutar las celdas en orden:
 
