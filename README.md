@@ -45,17 +45,17 @@ proyecto/
 ### Descripción de Funciones y Clases
 **Clase Vehiculo**: Representa un vehículo detectado y rastreado en el vídeo. Guarda la historia reciente de posiciones (coordenadas x, y y el índice de frame) usando un deque para mantener un número limitado de posiciones recientes. Calcula la velocidad suavizada en km/h basada en la distancia recorrida en los últimos frames y la tasa de cuadros por segundo (fps) del vídeo. Proporciona métodos para actualizar la posición, obtener la velocidad actual, la posición más reciente, y el último frame registrado.
 
-**Función encontrar_vehiculo(cx, cy, vehiculos, frame_idx, max_dist=50, max_frames=30)**: Busca entre los vehículos actualmente activos el que esté más cerca del punto (cx, cy) en pantalla, considerando solo aquellos que han sido actualizados dentro de un número máximo de frames (max_frames) y que estén dentro de una distancia máxima (max_dist). Esto permite asociar detecciones nuevas con vehículos ya rastreados para mantener el seguimiento.
+`Función encontrar_vehiculo(cx, cy, vehiculos, frame_idx, max_dist=50, max_frames=30)`: Busca entre los vehículos actualmente activos el que esté más cerca del punto (cx, cy) en pantalla, considerando solo aquellos que han sido actualizados dentro de un número máximo de frames (max_frames) y que estén dentro de una distancia máxima (max_dist). Esto permite asociar detecciones nuevas con vehículos ya rastreados para mantener el seguimiento.
 
-**Función limpiar_vehiculos(vehiculos, velocidades, frame_idx, timeout=30, v_min=5)**: Elimina vehículos que no han sido actualizados en los últimos timeout frames, guardando sus velocidades si estas superan una velocidad mínima (v_min). Esto ayuda a liberar memoria y a mantener las estadísticas de velocidad acumuladas de vehículos que ya no están presentes en la escena.
+`Función limpiar_vehiculos(vehiculos, velocidades, frame_idx, timeout=30, v_min=5)`: Elimina vehículos que no han sido actualizados en los últimos timeout frames, guardando sus velocidades si estas superan una velocidad mínima (v_min). Esto ayuda a liberar memoria y a mantener las estadísticas de velocidad acumuladas de vehículos que ya no están presentes en la escena.
 
 #### Variables y parámetros de configuración:
 
 **LINEAS**: Define líneas de detección por carril en coordenadas de píxeles.
 
-**Umbrales** como UMBRAL para binarización, AREA_MIN y AREA_MAX para filtrar contornos por tamaño, y tolerancia espacial para considerar que un vehículo está sobre una línea.
+**Umbrales** como UMBRAL para binarización, `AREA_MIN` y `AREA_MAX` para filtrar contornos por tamaño, y tolerancia espacial para considerar que un vehículo está sobre una línea.
 
-TIMEOUT, MAX_DIST y otros parámetros ajustan la sensibilidad y comportamiento del sistema.
+`TIMEOUT`, `MAX_DIST` y otros parámetros ajustan la sensibilidad y comportamiento del sistema.
 
 ---
 
