@@ -40,7 +40,13 @@ proyecto/
 
 
 
-https://github.com/user-attachments/assets/06b12185-0908-43c0-b836-6b3d3f9dc56e
+
+Uploading video readme ‐ Hecho con Clipchamp.mp4…
+
+
+
+
+
 
 
 
