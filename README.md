@@ -1,5 +1,6 @@
 # Sistema de Detección y Conteo de Vehículos
 Sistema de visión por computador para detección, conteo y cálculo de velocidad de vehículos en vídeos de tráfico, utilizando técnicas de procesamiento de imágenes con OpenCV.
+
 ## Características
 
 - Detección automática de vehículos mediante sustracción de fondo
@@ -9,6 +10,7 @@ Sistema de visión por computador para detección, conteo y cálculo de velocida
 - Estadísticas detalladas por carril y globales
 - Visualización en tiempo real con rectángulos y contadores
 
+---
 
 ## Estructura del Proyecto
 proyecto/
@@ -31,10 +33,14 @@ proyecto/
 - Celda 6: Procesamiento principal
 - Celda 7: Mostrar resultados
 
+---
+
 ### Controles durante la ejecución:
 
 - Presionar "q" para detener el procesamiento
 - El vídeo se mostrará en una ventana de OpenCV
+
+---
 
 ### Descripción de Funciones y Clases
 **Clase Vehiculo**: Representa un vehículo detectado y rastreado en el vídeo. Guarda la historia reciente de posiciones (coordenadas x, y y el índice de frame) usando un deque para mantener un número limitado de posiciones recientes. Calcula la velocidad suavizada en km/h basada en la distancia recorrida en los últimos frames y la tasa de cuadros por segundo (fps) del vídeo. Proporciona métodos para actualizar la posición, obtener la velocidad actual, la posición más reciente, y el último frame registrado.
