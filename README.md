@@ -39,9 +39,7 @@ proyecto/
 ### Resultado
 
 
-
-
-Uploading video readme ‐ Hecho con Clipchamp.mp4…
+https://imgur.com/a/ocitndh
 
 
 
