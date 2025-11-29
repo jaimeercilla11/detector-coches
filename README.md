@@ -68,6 +68,8 @@ TIMEOUT, MAX_DIST y otros parámetros ajustan la sensibilidad y comportamiento d
 
 ### Resultados
 
+El resultado que os tiene que aparecer por pantalla al ejecutar todo el script es asi:
+
 https://github.com/user-attachments/assets/fd438348-9326-4cbd-8239-80b57837a341
 
 
