@@ -15,23 +15,32 @@ proyecto/
 
 │
 
-├── prueba_detector_coches.ipynb      # Notebook principal
+├── prueba_detector_coches.ipynb     
 
-├── trafico01.mp4                     # Vídeo de entrada
+├── trafico01.mp4                    
 
-└── README.md                         # Este archivo
+└── README.md                         
 
 ### Ejecutar las celdas en orden:
 
-Celda 1: Importar librerías
-Celda 2: Definir clase Vehiculo
-Celda 3: Funciones auxiliares
-Celda 4: Configuración de líneas y parámetros
-Celda 5: Inicialización y carga de vídeo
-Celda 6: Procesamiento principal
-Celda 7: Mostrar resultados
+- Celda 1: Importar librerías
+- Celda 2: Definir clase Vehiculo
+- Celda 3: Funciones auxiliares
+- Celda 4: Configuración de líneas y parámetros
+- Celda 5: Inicialización y carga de vídeo
+- Celda 6: Procesamiento principal
+- Celda 7: Mostrar resultados
 
 ### Controles durante la ejecución:
 
-Presionar q para detener el procesamiento
-El vídeo se mostrará en una ventana de OpenCV
+- Presionar "q" para detener el procesamiento
+- El vídeo se mostrará en una ventana de OpenCV
+
+### Resultado
+
+
+
+https://github.com/user-attachments/assets/06b12185-0908-43c0-b836-6b3d3f9dc56e
+
+
+
