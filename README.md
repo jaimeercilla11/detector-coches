@@ -39,7 +39,7 @@ proyecto/
 ### Resultado
 
 
-![Demo](https://i.imgur.com/Ix99uX9.gif)
+![Demo del sistema](https://i.imgur.com/Ix99uX9.gif)
 
 
 
