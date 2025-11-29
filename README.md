@@ -39,7 +39,7 @@ proyecto/
 ### Resultado
 
 
-![Descripción del GIF]([https://i.imgur.com/ocitndh.gif](https://imgur.com/a/coches-xI0oPm0)](https://i.imgur.com/SW43aGF.gif))
+![Demo](https://i.imgur.com/SW43aGF.gif)
 
 
 
