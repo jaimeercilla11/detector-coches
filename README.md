@@ -39,7 +39,7 @@ proyecto/
 ### Resultado
 
 
-![Demo del sistema](https://i.imgur.com/Ix99uX9.gif)
+![Descripción del GIF](https://i.imgur.com/ocitndh.gif)
 
 
 
