@@ -1,10 +1,33 @@
-Sistema de Detección y Conteo de Vehículos
+# Sistema de Detección y Conteo de Vehículos
 Sistema de visión por computador para detección, conteo y cálculo de velocidad de vehículos en vídeos de tráfico, utilizando técnicas de procesamiento de imágenes con OpenCV.
-📋 Características
+## Características
 
-✅ Detección automática de vehículos mediante sustracción de fondo
-🔢 Conteo por carril con líneas de detección configurables
-🚀 Cálculo de velocidad en tiempo real (km/h)
-🎯 Tracking de vehículos con identificación única
-📊 Estadísticas detalladas por carril y globales
-🖼️ Visualización en tiempo real con rectángulos y contadores
+- Detección automática de vehículos mediante sustracción de fondo
+- Conteo por carril con líneas de detección configurables
+- Cálculo de velocidad en tiempo real (km/h)
+- Tracking de vehículos con identificación única
+- Estadísticas detalladas por carril y globales
+- Visualización en tiempo real con rectángulos y contadores
+
+
+## Estructura del Proyecto
+proyecto/
+│
+├── prueba_detector_coches.ipynb    # Notebook principal
+├── trafico01.mp4                   # Vídeo de entrada
+└── README.md                       # Este archivo
+
+### Ejecutar las celdas en orden:
+
+Celda 1: Importar librerías
+Celda 2: Definir clase Vehiculo
+Celda 3: Funciones auxiliares
+Celda 4: Configuración de líneas y parámetros
+Celda 5: Inicialización y carga de vídeo
+Celda 6: Procesamiento principal
+Celda 7: Mostrar resultados
+
+### Controles durante la ejecución:
+
+Presionar q para detener el procesamiento
+El vídeo se mostrará en una ventana de OpenCV
