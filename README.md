@@ -39,7 +39,10 @@ proyecto/
 ### Resultado
 
 
-![Descripción del GIF]([https://i.imgur.com/SW43aGF.gif](https://github.com/jaimeercilla11/detector-coches/blob/main/video%20readme%20%E2%80%90%20Hecho%20con%20Clipchamp%20(1).gif))
+https://github.com/user-attachments/assets/fd438348-9326-4cbd-8239-80b57837a341
+
+
+
 
 
 
