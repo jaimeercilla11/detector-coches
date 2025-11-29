@@ -39,7 +39,7 @@ proyecto/
 ### Resultado
 
 
-![](https://github.com/user-attachments/assets/0abc1b41-8e5f-4ed5-9c43-0be849b38934)
+![Demo](https://i.imgur.com/ocitndh.gif)
 
 
 
