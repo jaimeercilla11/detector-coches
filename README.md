@@ -1,4 +1,4 @@
-# Sistema de Detección y Conteo de Vehículos
+Sistema de Detección y Conteo de Vehículos
 Sistema de visión por computador para detección, conteo y cálculo de velocidad de vehículos en vídeos de tráfico, utilizando técnicas de procesamiento de imágenes con OpenCV.
 📋 Características
 
