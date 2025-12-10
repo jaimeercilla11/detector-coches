@@ -79,7 +79,7 @@ proyecto/
 ### Resultados
 
 El resultado que os tiene que aparecer por pantalla al ejecutar todo el script es asi:
-<video src="[https://github.com/tu-usuario/tu-repo/raw/main/ruta/video.mp4](https://github.com/jaimeercilla11/detector-coches/blob/main/WhatsApp%20Video%202025-12-10%20at%2018.40.15.mp4)" controls width="640"></video>
+<video src=".video.mp4" controls width="640"></video>
 ```
 ============================================================
 RESULTADOS FINALES
