@@ -80,8 +80,7 @@ proyecto/
 
 El resultado que os tiene que aparecer por pantalla al ejecutar todo el script es asi:
 
-https://github.com/user-attachments/assets/fd438348-9326-4cbd-8239-80b57837a341
-
+https://github.com/jaimeercilla11/detector-coches/blob/main/WhatsApp%20Video%202025-12-10%20at%2018.40.15.mp4
 
 ```
 ============================================================
