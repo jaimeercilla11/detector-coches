@@ -15,10 +15,15 @@ Sistema de visión por computador para detección, conteo y cálculo de velocida
 ## Estructura del Proyecto
 proyecto/
 ├── main.py
+
 ├── utils.py  
+
 ├── trafico01.mp4
+
 └── README.md                     
 
+---
+ 
 ### Archivos principales:
 
 - **main.py**: Script principal que carga vídeo y procesa frames​
