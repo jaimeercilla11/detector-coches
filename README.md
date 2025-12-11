@@ -79,7 +79,7 @@ proyecto/
 ### Resultados
 
 El resultado que os tiene que aparecer por pantalla al ejecutar todo el script es asi:
-[[![Mira el video](ruta/a/miniatura.png)]([https://youtube.com/tu-video](https://www.youtube.com/watch?v=4fCb4_3Gsh4))](https://github.com/jaimeercilla11/detector-coches/blob/main/video_detector_coches.mp4) 
+https://github.com/jaimeercilla11/detector-coches/blob/main/video_detector_coches.mp4 
 
 ```
 ============================================================
