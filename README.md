@@ -79,7 +79,7 @@ proyecto/
 ### Resultados
 
 El resultado que os tiene que aparecer por pantalla al ejecutar todo el script es asi:
-![Detector de coches](https://raw.githubusercontent.com/jaimeercilla11/detector-coches/main/video_detector_coches.mp4) 
+![Detector de coches](https://github.com/user-attachments/assets/48680dec-9c8e-4b2b-99e0-ef5a5e8ad5a6)
 
 ```
 ============================================================
