@@ -5,7 +5,7 @@ Sistema de visión por computador para detección, conteo y cálculo de velocida
 
 - Detección automática de vehículos mediante sustracción de fondo
 - Conteo por carril con líneas de detección configurables
-- Cálculo de velocidad en tiempo real (km/h)
+- Cálculo de velocidad en tiempo real (px/s)
 - Tracking de vehículos con identificación única
 - Estadísticas detalladas por carril y globales
 - Visualización en tiempo real con rectángulos y contadores
@@ -14,66 +14,61 @@ Sistema de visión por computador para detección, conteo y cálculo de velocida
 
 ## Estructura del Proyecto
 proyecto/
+├── main.py
+├── utils.py  
+├── trafico01.mp4
+└── README.md                     
 
-│
+### Archivos principales:
 
-├── prueba_detector_coches.ipynb     
+- **main.py**: Script principal que carga vídeo y procesa frames​
 
-├── trafico01.mp4                    
-
-└── README.md                         
-
-### Ejecutar las celdas en orden:
-
-- Celda 1: Importar librerías
-- Celda 2: Definir clase Vehiculo
-- Celda 3: Funciones auxiliares
-- Celda 4: Configuración de líneas y parámetros
-- Celda 5: Inicialización y carga de vídeo
-- Celda 6: Procesamiento principal
-- Celda 7: Mostrar resultados
+- **utils.py**: Clase TrafficCounter y funciones auxiliares​
 
 ---
 
-### Controles durante la ejecución:
+### Instalación y Ejecución
 
-- Presionar "q" para detener el procesamiento
-- El vídeo se mostrará en una ventana de OpenCV
+`pip install opencv-python
+python main.py`
 
 ---
 
-### Descripción de Funciones y Clases
-**Clase Vehiculo**: Representa un vehículo detectado y rastreado en el vídeo. Guarda la historia reciente de posiciones (coordenadas x, y y el índice de frame) usando un deque para mantener un número limitado de posiciones recientes. Calcula la velocidad suavizada en km/h basada en la distancia recorrida en los últimos frames y la tasa de cuadros por segundo (fps) del vídeo. Proporciona métodos para actualizar la posición, obtener la velocidad actual, la posición más reciente, y el último frame registrado.
+### Controles:
+- Presiona "c" o Esc para detener
 
-`Función encontrar_vehiculo(cx, cy, vehiculos, frame_idx, max_dist=50, max_frames=30)`: Busca entre los vehículos actualmente activos el que esté más cerca del punto (cx, cy) en pantalla, considerando solo aquellos que han sido actualizados dentro de un número máximo de frames (max_frames) y que estén dentro de una distancia máxima (max_dist). Esto permite asociar detecciones nuevas con vehículos ya rastreados para mantener el seguimiento.
+- Ventanas: Máscara + Detección de Vehículos
 
-`Función limpiar_vehiculos(vehiculos, velocidades, frame_idx, timeout=30, v_min=5)`: Elimina vehículos que no han sido actualizados en los últimos timeout frames, guardando sus velocidades si estas superan una velocidad mínima (v_min). Esto ayuda a liberar memoria y a mantener las estadísticas de velocidad acumuladas de vehículos que ya no están presentes en la escena.
+--- 
 
-#### Variables y parámetros de configuración:
+#### Descripción de Funciones y Clases
 
-**LINEAS**: Define líneas de detección por carril en coordenadas de píxeles.
+- Clase `TrafficCounter`: Gestiona detección, tracking, conteo y velocidades por carril.​
 
-**Umbrales** como UMBRAL para binarización, `AREA_MIN` y `AREA_MAX` para filtrar contornos por tamaño, y tolerancia espacial para considerar que un vehículo está sobre una línea.
+- Función `line_crossed()`: Detecta si un centroide cruza línea de carril.​
 
-`TIMEOUT`, `MAX_DIST` y otros parámetros ajustan la sensibilidad y comportamiento del sistema.
+- Función `speed_calc()`: Calcula velocidad entre posiciones previas/actuales.​
 
+Parámetros clave:
+- **LINES_CONFIG**: Líneas de detección por carril​
+
+- **min_area=500, max_width=420**: Filtros de contornos​
+
+- **max_tracking=14**: Timeout para tracks
 ---
 
 ### Flujo del Sistema
-1. Se carga el vídeo y se calcula un fondo promedio para la sustracción de fondo inicial.
+1. Carga vídeo y crea sustractor de fondo MOG2​
 
-2. Para cada frame, se resta el fondo, binariza la imagen, limpia con operaciones morfológicas y aplica una máscara para limitar la detección a la región de interés.
+2. Por frame: grises → máscara → morfología → contornos​
 
-3. Se detectan contornos que se filtran por área y proporción para identificar posibles vehículos.
+3. Filtra contornos válidos y calcula centroides​
 
-4. Se asocian estas detecciones con vehículos existentes o se crean nuevos objetos Vehiculo.
+4. Asocia detecciones con tracks existentes o crea nuevos​
 
-5. Se actualizan posiciones y velocidades, contabilizando vehículos que cruzan las líneas definidas.
+5. Actualiza contadores y velocidades al cruzar líneas​
 
-6. Periódicamente se limpian vehículos inactivos.
-
-7. Al final se muestran estadísticas de conteo y velocidades por carril.
-
+6. Dibuja overlays y estadísticas en tiempo real
 ---
 
 ### Resultados
@@ -81,28 +76,11 @@ proyecto/
 El resultado que os tiene que aparecer por pantalla al ejecutar todo el script es asi:
 ![Detector de coches](https://github.com/user-attachments/assets/48680dec-9c8e-4b2b-99e0-ef5a5e8ad5a6)
 
-```
-============================================================
-RESULTADOS FINALES
-============================================================
-Carril 1:   5 vehículos | Vel: 56.1 km/h (min: 47.2, max: 65.5)
-Carril 2:   5 vehículos | Vel: 53.5 km/h (min: 50.2, max: 55.7)
-Carril 3:  10 vehículos | Vel: 126.0 km/h (min: 104.3, max: 145.0)
-Carril 4:  12 vehículos | Vel: 108.3 km/h (min: 38.2, max: 137.0)
-Carril 5:   5 vehículos | Sin datos de velocidad
-Carril 6:   9 vehículos | Sin datos de velocidad
-Carril 7:   7 vehículos | Vel: 88.2 km/h (min: 88.2, max: 88.2)
-------------------------------------------------------------
-TOTAL: 53 vehículos
-Velocidad Global: 84.1 km/h (min: 38.2, max: 145.0)
-============================================================
-```
-
+---
 
 ## Autores
 - Jaime Ercilla Martin
 - Javier Bolívar García-Izquierdo
-
 
 
 
