@@ -79,8 +79,7 @@ Parámetros clave:
 ### Resultados
 
 El resultado que os tiene que aparecer por pantalla al ejecutar todo el script es asi:
-![Detector de coches](https://github.com/user-attachments/assets/48680dec-9c8e-4b2b-99e0-ef5a5e8ad5a6)
-
+<video width="640" controls> <source src="https://github.com/user-attachments/assets/48680dec-9c8e-4b2b-99e0-ef5a5e8ad5a6" type="video/mp4"> Tu navegador no soporta la reproducción de video. </video> 
 ---
 
 ## Autores
