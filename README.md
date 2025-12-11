@@ -80,7 +80,7 @@ Parámetros clave:
 
 El resultado que os tiene que aparecer por pantalla al ejecutar todo el script es asi:
 
-<video width="640" controls> <source src="https://github.com/user-attachments/assets/48680dec-9c8e-4b2b-99e0-ef5a5e8ad5a6" type="video/mp4"> Tu navegador no soporta la reproducción de video. </video> 
+https://github.com/user-attachments/assets/9e9d5870-043f-4fa9-baf6-ebbd36eb6f3d
 
 ---
 
