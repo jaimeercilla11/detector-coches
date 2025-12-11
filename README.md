@@ -79,7 +79,7 @@ proyecto/
 ### Resultados
 
 El resultado que os tiene que aparecer por pantalla al ejecutar todo el script es asi:
-<video src="./video.mp4" controls width="640"></video>
+[![Mira el video](ruta/a/miniatura.png)]([https://youtube.com/tu-video](https://www.youtube.com/watch?v=4fCb4_3Gsh4))
 
 ```
 ============================================================
