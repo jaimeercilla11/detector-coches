@@ -80,6 +80,7 @@ proyecto/
 
 El resultado que os tiene que aparecer por pantalla al ejecutar todo el script es asi:
 <video src="./video.mp4" controls width="640"></video>
+
 ```
 ============================================================
 RESULTADOS FINALES
