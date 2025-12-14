@@ -245,7 +245,9 @@ El sistema en funcionamiento muestra:
   - Estadísticas globales actualizadas continuamente
 
 **Video de demostración:**  
-Ver funcionamiento completo en: https://github.com/user-attachments/assets/9e9d5870-043f-4fa9-baf6-ebbd36eb6f3d
+Ver funcionamiento completo en: 
+
+https://github.com/user-attachments/assets/9e9d5870-043f-4fa9-baf6-ebbd36eb6f3d
 
 El video muestra el sistema procesando tráfico real con múltiples vehículos simultáneos en diferentes carriles, demostrando:
 - Detección robusta de vehículos de diferentes tamaños
@@ -256,16 +258,16 @@ El video muestra el sistema procesando tráfico real con múltiples vehículos s
 ### 4.3 Análisis Cualitativo
 
 **Fortalezas observadas:**
-- ✅ Detección consistente de vehículos en buenas condiciones de iluminación
-- ✅ Separación correcta de carriles evita conteos cruzados
-- ✅ Sistema de tracking mantiene identidad de vehículos a lo largo de varios frames
-- ✅ Respuesta en tiempo real permite aplicaciones prácticas
+- Detección consistente de vehículos en buenas condiciones de iluminación
+- Separación correcta de carriles evita conteos cruzados
+- Sistema de tracking mantiene identidad de vehículos a lo largo de varios frames
+- Respuesta en tiempo real permite aplicaciones prácticas
 
 **Casos problemáticos identificados:**
-- ⚠️ Oclusiones parciales cuando vehículos se superponen visualmente
-- ⚠️ Vehículos muy lentos o detenidos pueden "fundirse" con el fondo tras varios segundos
-- ⚠️ Sombras pronunciadas ocasionalmente generan detecciones duplicadas
-- ⚠️ Cambios bruscos de iluminación requieren tiempo de adaptación del MOG2
+- Oclusiones parciales cuando vehículos se superponen visualmente
+- Vehículos muy lentos o detenidos pueden "fundirse" con el fondo tras varios segundos
+- Sombras pronunciadas ocasionalmente generan detecciones duplicadas
+- Cambios bruscos de iluminación requieren tiempo de adaptación del MOG2
 
 ### 4.4 Observaciones Técnicas
 
@@ -278,160 +280,21 @@ La configuración de parámetros elegida (`min_area=500`, `max_width=420`) propo
 
 ---
 
-## 5. Requisitos Cumplidos
-
-### Requisitos Obligatorios
-
-✅ **1. Contador básico de vehículos (MÍNIMO 5.0)**  
-Implementado correctamente con líneas de conteo virtuales y sistema de tracking.
-
-✅ **2. Múltiples vías y carriles**  
-Sistema configurado para **7 carriles independientes** con conteo diferenciado por carril y estadísticas individuales.
-
-### Requisitos Opcionales Implementados
-
-✅ **5. Diferentes velocidades de vehículos**  
-El algoritmo MOG2 se adapta automáticamente a vehículos rápidos y lentos sin necesidad de ajustes manuales.
-
-✅ **6. Robustez a diferentes tipos de vehículos**  
-Los filtros por área mínima (500px²) y ancho máximo (420px) permiten detectar desde motocicletas hasta camiones y furgonetas.
-
-✅ **8. Cálculo de velocidad**  
-Sistema completo de tracking con cálculo de velocidad instantánea mediante distancia euclidiana entre frames consecutivos. Se proporcionan estadísticas de velocidad media por carril y global.
-
-✅ **10. Aporte adicional**  
-- **Estadísticas agregadas**: Velocidad media global y por carril
-- **Visualización dual**: Máscara binaria + frame anotado en paralelo
-- **Sistema de tracking robusto**: Identificación única de vehículos con limpieza automática de objetos inactivos
-- **Interfaz interactiva**: Ventanas redimensionables y controles de teclado
-
-### Requisitos Opcionales NO Implementados
-
-❌ **3. Aplicación a otros vídeos similares**  
-No se ha probado exhaustivamente con videos adicionales por limitaciones de tiempo en la práctica.
-
-❌ **4. Vías de doble sentido**  
-El sistema actual no distingue dirección de movimiento (arriba↔abajo). Sería necesario implementar análisis de historial de posiciones para detectar trayectorias.
-
-❌ **7. Contadores independientes por tipo de vehículo**  
-La clasificación automática requeriría técnicas más avanzadas:
-- Deep learning (YOLO, Faster R-CNN) - fuera del alcance con OpenCV puro
-- O clasificadores por características manuales (relación aspecto, área) con entrenamiento supervisado
-
-❌ **9. Escenarios de retención/atascos**  
-El background subtraction tiene limitaciones inherentes con objetos estáticos prolongados:
-- Vehículos detenidos > 10 segundos se integran en el modelo de fondo
-- Posible solución: combinar con detección basada en bordes o características
-
----
-
-## 6. Limitaciones y Trabajo Futuro
-
-### 6.1 Limitaciones Identificadas
-
-1. **Oclusiones totales o parciales**  
-   Vehículos solapados visualmente pueden:
-   - Contarse como uno solo
-   - Perder tracking temporalmente
-   - Generar IDs duplicados tras separarse
-
-2. **Condiciones de iluminación variables**  
-   - Cambios bruscos (nubes, túneles) afectan la segmentación
-   - MOG2 requiere tiempo de adaptación (~5-10 segundos)
-   - Sombras pronunciadas pueden generar falsos positivos
-
-3. **Algoritmo de tracking simple**  
-   - Asociación por "primer match" no es óptima
-   - Puede fallar con alta densidad de vehículos (>3 por carril)
-   - No utiliza predictores de movimiento (Kalman filter)
-
-4. **Ausencia de calibración espacial**  
-   - Velocidades reportadas en píxeles/segundo
-   - No hay conversión automática a km/h
-   - Requiere medición manual de referencias espaciales
-
-5. **Dirección única**  
-   - No distingue vehículos entrando vs saliendo
-   - Imposible detectar infracciones de sentido contrario
-   - Limitado a análisis de flujo unidireccional
-
-6. **Sensibilidad a parámetros**  
-   - Umbrales (`min_area`, `max_width`) ajustados para video específico
-   - Puede requerir reconfiguración para diferentes escenas
-   - No hay ajuste automático adaptativo
-
-### 6.2 Mejoras Propuestas
-
-**A corto plazo (extensiones directas):**
-
-1. **Detección de dirección**  
-   Implementar análisis de historial de posiciones (últimos N frames) para determinar vector de movimiento dominante.
-
-2. **Clasificación simple por tamaño**  
-   Categorizar vehículos según área y relación aspecto:
-   - Motos: área < 1000px²
-   - Coches: 1000-3000px²
-   - Camiones: > 3000px² o ancho > 250px
-
-3. **Exportación de datos estructurados**  
-   Guardar resultados en CSV/JSON para análisis posterior:
-   ```csv
-   timestamp,carril,id_vehiculo,velocidad_px_s,tipo_estimado
-   ```
-
-4. **Calibración espacial opcional**  
-   Permitir definir referencias espaciales (ej: "este carril mide 3.5m") para convertir px/s → km/h.
-
-**A medio plazo (mejoras sustanciales):**
-
-5. **Filtro de Kalman para tracking**  
-   Predecir posiciones futuras basándose en trayectoria, mejorando robustez ante oclusiones temporales.
-
-6. **Hungarian algorithm para asociación**  
-   Optimizar asignación global de detecciones a tracks existentes.
-
-7. **Detección de eventos**  
-   - Alertas de velocidad excesiva (configurable por carril)
-   - Detección de atascos (velocidad media < umbral)
-   - Conteo de infracciones (sentido contrario)
-
-8. **Interfaz gráfica**  
-   Panel de control para ajustar parámetros en tiempo real sin editar código.
-
-**A largo plazo (investigación avanzada):**
-
-9. **Integración con deep learning**  
-   - Detectores estado del arte (YOLOv8, Faster R-CNN)
-   - Clasificación automática de tipos de vehículo
-   - Tracking multi-objeto robusto (DeepSORT, ByteTrack)
-
-10. **Sistema multi-cámara**  
-    - Tracking global de vehículos entre múltiples vistas
-    - Re-identificación de vehículos por características visuales
-    - Análisis de flujo de tráfico a nivel de red vial
-
-11. **Condiciones meteorológicas adversas**  
-    - Adaptación a lluvia, nieve, niebla
-    - Corrección de iluminación nocturna
-    - Preprocesamiento especializado por condición
-
----
-
-## 7. Conclusiones
+## 6. Conclusiones
 
 Se ha desarrollado con éxito un **sistema funcional de conteo de vehículos** basado en técnicas clásicas de visión por computador utilizando exclusivamente OpenCV, cumpliendo estrictamente los requisitos del enunciado.
 
 ### Logros principales:
 
-✅ **Arquitectura modular y extensible**: Separación clara entre captura/visualización (main.py) y lógica de procesamiento (utils.py)
+ **Arquitectura modular y extensible**: Separación clara entre captura/visualización (main.py) y lógica de procesamiento (utils.py)
 
-✅ **Monitorización multi-carril**: Capacidad de procesar hasta 7 carriles simultáneamente con conteo independiente
+ **Monitorización multi-carril**: Capacidad de procesar hasta 7 carriles simultáneamente con conteo independiente
 
-✅ **Sistema de tracking robusto**: Identificación única de vehículos con persistencia temporal y limpieza automática
+ **Sistema de tracking robusto**: Identificación única de vehículos con persistencia temporal y limpieza automática
 
-✅ **Análisis de velocidad**: Cálculo en tiempo real con estadísticas agregadas por carril y globales
+ **Análisis de velocidad**: Cálculo en tiempo real con estadísticas agregadas por carril y globales
 
-✅ **Visualización informativa**: Interfaz dual que facilita tanto el análisis técnico (máscara) como la interpretación visual (anotaciones)
+ **Visualización informativa**: Interfaz dual que facilita tanto el análisis técnico (máscara) como la interpretación visual (anotaciones)
 
 ### Reflexión técnica:
 
@@ -443,7 +306,3 @@ El enfoque basado en **background subtraction con MOG2** ha demostrado ser efect
 
 Sin embargo, también se han identificado **limitaciones inherentes** del enfoque clásico, especialmente en situaciones de alta densidad, oclusiones prolongadas y vehículos estáticos. Estas limitaciones son conocidas en la literatura y justifican la evolución hacia técnicas basadas en aprendizaje profundo en aplicaciones industriales reales.
 
-### Aporte académico:
-
-La práctica ha permitido:
-- Aplicar conceptos fundamentales de procesamiento de imagen (seg
