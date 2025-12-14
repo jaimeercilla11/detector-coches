@@ -245,7 +245,6 @@ El sistema en funcionamiento muestra:
   - Estadísticas globales actualizadas continuamente
 
 **Video de demostración:**  
-Ver funcionamiento completo en: 
 
 https://github.com/user-attachments/assets/9e9d5870-043f-4fa9-baf6-ebbd36eb6f3d
 
@@ -280,7 +279,7 @@ La configuración de parámetros elegida (`min_area=500`, `max_width=420`) propo
 
 ---
 
-## 6. Conclusiones
+## 5. Conclusiones
 
 Se ha desarrollado con éxito un **sistema funcional de conteo de vehículos** basado en técnicas clásicas de visión por computador utilizando exclusivamente OpenCV, cumpliendo estrictamente los requisitos del enunciado.
 
