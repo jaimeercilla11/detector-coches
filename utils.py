@@ -52,8 +52,8 @@ class TrafficCounter:
     """
 
     # Colores en BGR
-    LINE_COLOR = (255, 255, 0)      # cian para líneas
-    TEXT_COLOR = (0, 255, 0)        # verde radioactivo para texto
+    LINE_COLOR = (255, 255, 0)      # cian 
+    TEXT_COLOR = (0, 255, 0)        # verde neon
 
     def __init__(self, lines_config, max_tracking=14, min_area=500, max_width=420):
         """
@@ -189,7 +189,7 @@ class TrafficCounter:
         """
         font = cv2.FONT_HERSHEY_DUPLEX
 
-        # Total de vehículos (texto grande, más a la derecha)
+        # Total de vehículos 
         total_vehiculos = sum(self.counter)
         stats_y = 40
         total_text = f"Total vehiculos: {total_vehiculos}"
@@ -203,7 +203,7 @@ class TrafficCounter:
             2,
         )
 
-        # Velocidad media global (texto grande, más a la derecha)
+        # Velocidad media global 
         all_speeds = [s for lane in self.lane_speeds for s in lane]
         if all_speeds:
             avg_speed = sum(all_speeds) / len(all_speeds)

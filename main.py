@@ -49,7 +49,7 @@ def main():
         cv2.imshow("Detección de Vehículos", annotated)
 
         key = cv2.waitKey(27) & 0xFF
-        # Pulsa 'c' o Esc para salir
+        # Pulsar 'c' o Esc para salir
         if key == ord("c") or key == 27:
             go = False
 
