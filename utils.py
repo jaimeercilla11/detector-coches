@@ -20,9 +20,8 @@ def speed_calc(prev_obj, actual_obj, fps):
 
 
 class TrafficCounter:
-    # Colores en BGR
-    LINE_COLOR = (255, 255, 0)      # cian 
-    TEXT_COLOR = (0, 255, 0)        # verde neon
+    LINE_COLOR = (255, 255, 0)       
+    TEXT_COLOR = (0, 255, 0)       
 
     def __init__(self, lines_config, max_tracking=14, min_area=500, max_width=420):
         self.lines = lines_config
@@ -34,7 +33,6 @@ class TrafficCounter:
         self.object_ids = [0 for _ in self.lines]
         self.track_obj = [{} for _ in self.lines]
 
-        # velocidades por carril (para estadísticas, no se dibujan)
         self.lane_speeds = [[] for _ in self.lines]
 
         self.bg_subtractor = cv2.createBackgroundSubtractorMOG2(
@@ -130,7 +128,6 @@ class TrafficCounter:
        
         font = cv2.FONT_HERSHEY_DUPLEX
 
-        # Total de vehículos 
         total_vehiculos = sum(self.counter)
         stats_y = 40
         total_text = f"Total vehiculos: {total_vehiculos}"
@@ -144,7 +141,6 @@ class TrafficCounter:
             2,
         )
 
-        # Velocidad media global 
         all_speeds = [s for lane in self.lane_speeds for s in lane]
         if all_speeds:
             avg_speed = sum(all_speeds) / len(all_speeds)
@@ -159,7 +155,6 @@ class TrafficCounter:
                 2,
             )
 
-        # Por carril: línea + contador
         for i, line in enumerate(self.lines):
             base_y = line["cy1"] - 15
             count_text = f"Carril {i + 1}: {self.counter[i]}"
