@@ -3,17 +3,6 @@ import math
 
 
 def line_crossed(centroid_x, centroid_y, line, margin=10):
-    """
-    Comprueba si un centroide ha cruzado una línea horizontal.
-    
-    Args:
-        centroid_x, centroid_y: coordenadas del centroide del objeto
-        line: diccionario con {"cx1", "cy1", "cx2", "cy2"}
-        margin: tolerancia vertical en píxeles (default: 10)
-    
-    Returns:
-        bool: True si el centroide cruza la línea
-    """
     return (
         line["cx1"] <= centroid_x <= line["cx2"]
         and abs(centroid_y - line["cy1"]) <= margin
@@ -21,17 +10,6 @@ def line_crossed(centroid_x, centroid_y, line, margin=10):
 
 
 def speed_calc(prev_obj, actual_obj, fps):
-    """
-    Calcula la velocidad de un objeto entre dos posiciones.
-    
-    Args:
-        prev_obj: tupla (x_prev, y_prev, frame_prev)
-        actual_obj: tupla (x_actual, y_actual, frame_actual)
-        fps: frames por segundo del vídeo
-    
-    Returns:
-        float: velocidad en píxeles/segundo
-    """
     x_prev, y_prev, prev_frame = prev_obj
     x_actual, y_actual, actual_frame = actual_obj
 
@@ -42,29 +20,11 @@ def speed_calc(prev_obj, actual_obj, fps):
 
 
 class TrafficCounter:
-    """
-    Lógica de visión:
-    - Segmentación de fondo
-    - Detección de blobs
-    - Tracking por carril
-    - Conteo y velocidades
-    - Dibujar overlays
-    """
-
     # Colores en BGR
     LINE_COLOR = (255, 255, 0)      # cian 
     TEXT_COLOR = (0, 255, 0)        # verde neon
 
     def __init__(self, lines_config, max_tracking=14, min_area=500, max_width=420):
-        """
-        Inicializa el contador de tráfico.
-        
-        Args:
-            lines_config: lista de diccionarios con líneas de conteo
-            max_tracking: frames máximo para mantener un track
-            min_area: área mínima de contorno (píxeles)
-            max_width: ancho máximo de vehículo (píxeles)
-        """
         self.lines = lines_config
         self.max_tracking = max_tracking
         self.min_area = min_area
@@ -83,16 +43,6 @@ class TrafficCounter:
         self.frames_counter = 0
 
     def process_frame(self, frame, fps):
-        """
-        Procesa un frame completo: detecta, trackea, cuenta y dibuja.
-        
-        Args:
-            frame: imagen BGR del frame actual
-            fps: frames por segundo del vídeo
-        
-        Returns:
-            tuple: (mask_binarizada, frame_anotado)
-        """
         self.frames_counter += 1
 
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
@@ -131,10 +81,6 @@ class TrafficCounter:
         return mask, annotated
 
     def _update_track_for_lane(self, lane_index, centroid_x, centroid_y, fps):
-        """
-        Actualiza/crea track de un vehículo en un carril específico.
-        Calcula velocidad si hay track previo.
-        """
         lane_tracks = self.track_obj[lane_index]
 
         matching_id = next(
@@ -171,9 +117,6 @@ class TrafficCounter:
             self.object_ids[lane_index] += 1
 
     def _cleanup_expired_tracks(self):
-        """
-        Elimina tracks de vehículos que no se han visto en max_tracking frames.
-        """
         for i, lane_tracks in enumerate(self.track_obj):
             expired_ids = [
                 obj_id
@@ -184,9 +127,7 @@ class TrafficCounter:
                 del lane_tracks[obj_id]
 
     def _draw_lanes_and_counts(self, frame):
-        """
-        Dibuja líneas de carriles, contadores y estadísticas globales.
-        """
+       
         font = cv2.FONT_HERSHEY_DUPLEX
 
         # Total de vehículos 
@@ -244,12 +185,6 @@ class TrafficCounter:
         return frame
 
     def print_results(self):
-        """
-        Imprime estadísticas finales por consola:
-        - Conteo y velocidad media por carril
-        - Total vehículos
-        - Velocidad media global
-        """
         print("\n========== Conteo de Vehículos por Carril ==========")
         total = 0
         for i, count in enumerate(self.counter):
