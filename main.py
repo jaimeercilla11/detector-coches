@@ -22,7 +22,6 @@ def create_windows():
     """
     cv2.namedWindow("Máscara", cv2.WINDOW_NORMAL)
     cv2.namedWindow("Detección de Vehículos", cv2.WINDOW_NORMAL)
-    # Ajusta tamaño a tu pantalla si hace falta
     cv2.resizeWindow("Detección de Vehículos", 1280, 720)
 
 
@@ -44,12 +43,10 @@ def main():
         fps = cap.get(cv2.CAP_PROP_FPS)
         mask, annotated = traffic_counter.process_frame(frame, fps)
 
-        # Mostrar SIEMPRE las dos ventanas
         cv2.imshow("Máscara", mask)
         cv2.imshow("Detección de Vehículos", annotated)
 
         key = cv2.waitKey(27) & 0xFF
-        # Pulsar 'c' o Esc para salir
         if key == ord("c") or key == 27:
             go = False
 
