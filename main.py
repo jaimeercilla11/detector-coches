@@ -17,9 +17,6 @@ LINES_CONFIG = [
 
 
 def create_windows():
-    """
-    Crea ventanas redimensionables para asegurar que se vea todo el frame.
-    """
     cv2.namedWindow("Máscara", cv2.WINDOW_NORMAL)
     cv2.namedWindow("Detección de Vehículos", cv2.WINDOW_NORMAL)
     cv2.resizeWindow("Detección de Vehículos", 1280, 720)
