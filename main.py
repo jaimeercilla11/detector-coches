@@ -1,6 +1,6 @@
 import cv2
 
-from utils import TrafficCounter
+from TrafficCounter import TrafficCounter
 
 
 VIDEO_PATH = "trafico01.mp4"
