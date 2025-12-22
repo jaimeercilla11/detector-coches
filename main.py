@@ -1,13 +1,14 @@
 import cv2
 
-from utils import TrafficCounter
-
+from Car import Car
+from Line import Line
+from TrafficCounter import TrafficCounter
 
 VIDEO_PATH = "trafico01.mp4"
 
 LINES_CONFIG = [
-    {"cx1": 480, "cy1": 850, "cx2": 580, "cy2": 850},
-    {"cx1": 610, "cy1": 850, "cx2": 720, "cy2": 850},
+    {"cx1": 480, "cy1": 850, "cx2":  580, "cy2": 850},
+    {"cx1":  610, "cy1": 850, "cx2": 720, "cy2": 850},
     {"cx1": 990, "cy1": 750, "cx2": 1090, "cy2": 750},
     {"cx1": 1320, "cy1": 900, "cx2": 1470, "cy2": 900},
     {"cx1": 1180, "cy1": 640, "cx2": 1210, "cy2": 640},
@@ -32,9 +33,9 @@ def main():
     traffic_counter = TrafficCounter(LINES_CONFIG, max_tracking=14)
 
     go = True
-    while go:
-        ret, frame = cap.read()
-        if not ret:
+    while go: 
+        ret, frame = cap. read()
+        if not ret: 
             break
 
         fps = cap.get(cv2.CAP_PROP_FPS)
@@ -52,5 +53,5 @@ def main():
     traffic_counter.print_results()
 
 
-if __name__ == "__main__":
+if __name__ == "__main__": 
     main()
