@@ -1,8 +1,8 @@
 import cv2
 
-from Car import Car
-from Line import Line
-from TrafficCounter import TrafficCounter
+from utils import Car
+from utils import Line
+from utils import TrafficCounter
 
 VIDEO_PATH = "trafico01.mp4"
 
