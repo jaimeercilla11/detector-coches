@@ -3,33 +3,31 @@ import cv2
 import time
 
 
-class Car:
+class Car: 
     """Representa un vehículo en el frame"""
     
     def __init__(self, car_id, x, y, frame_num):
         self.id = car_id
-        self. position_history = [(x, y, frame_num)]  # (x, y, frame)
+        self.position_history = [(x, y, frame_num)]  # (x, y, frame)
         self.last_seen = frame_num
     
-    @property
-    def current_position(self):
+    def get_current_position(self):
         """Retorna la posición actual (x, y)"""
-        return self.position_history[-1][: 2]
+        return self.position_history[-1][:2]
     
-    @property
-    def current_frame(self):
+    def get_current_frame(self):
         """Retorna el frame actual"""
         return self.position_history[-1][2]
     
     def update_position(self, x, y, frame_num):
         """Actualiza la posición del vehículo"""
-        self. position_history.append((x, y, frame_num))
+        self.position_history.append((x, y, frame_num))
         self.last_seen = frame_num
     
     def calculate_speed(self, fps):
         """Calcula la velocidad del vehículo en píxeles/segundo"""
         if len(self.position_history) < 2:
-            return 0. 
+            return 0.0
         
         x_prev, y_prev, frame_prev = self.position_history[-2]
         x_curr, y_curr, frame_curr = self.position_history[-1]
@@ -45,7 +43,7 @@ class Car:
     
     def distance_to(self, x, y):
         """Calcula la distancia a un punto (x, y)"""
-        curr_x, curr_y = self.current_position
+        curr_x, curr_y = self.get_current_position()
         return math.hypot(x - curr_x, y - curr_y)
 
 
@@ -55,11 +53,11 @@ class Line:
     
     def __init__(self, line_id, x1, y1, x2, y2, margin=10):
         self.id = line_id
-        self.x1 = x1
+        self. x1 = x1
         self.y1 = y1
         self.x2 = x2
         self.y2 = y2
-        self.margin = margin
+        self. margin = margin
         
         # Tracking de vehículos en esta línea
         self.vehicle_count = 0
@@ -76,7 +74,7 @@ class Line:
     
     def find_matching_car(self, x, y, distance_threshold=50):
         """Busca un car existente cerca de (x, y)"""
-        for car_id, car in self.cars.items():
+        for car_id, car in self. cars.items():
             if car.distance_to(x, y) < distance_threshold:
                 return car
         return None
@@ -99,11 +97,11 @@ class Line:
     def cleanup_expired_cars(self, current_frame, max_tracking):
         """Elimina vehículos que no se han visto en mucho tiempo"""
         expired_ids = [
-            car_id for car_id, car in self.cars. items()
+            car_id for car_id, car in self.cars.items()
             if car.is_expired(current_frame, max_tracking)
         ]
         for car_id in expired_ids:
-            del self.cars[car_id]
+            del self. cars[car_id]
     
     def get_average_speed(self):
         """Obtiene la velocidad media en esta línea"""
@@ -113,13 +111,13 @@ class Line:
         """Retorna estadísticas de la línea"""
         return {
             "line_id": self.id,
-            "count": self. vehicle_count,
-            "average_speed": self.get_average_speed(),
-            "total_speeds_recorded": len(self. speeds)
+            "count": self.vehicle_count,
+            "average_speed": self. get_average_speed(),
+            "total_speeds_recorded": len(self.speeds)
         }
     
 
-class VehicleDetector:
+class VehicleDetector: 
     """Solo se encarga de detectar vehículos en el frame"""
     
     def __init__(self, min_area=500, max_width=420):
@@ -132,11 +130,8 @@ class VehicleDetector:
     def detect(self, frame):
         """Retorna mask y lista de centroides detectados"""
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        mask = self.bg_subtractor. apply(gray)
+        mask = self.bg_subtractor.apply(gray)
         
-        kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5))
-        mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel)
-        _, mask = cv2.threshold(mask, 254, 255, cv2.THRESH_BINARY)
         
         contours, _ = cv2.findContours(
             mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE
@@ -149,7 +144,7 @@ class VehicleDetector:
                 continue
             
             x, y, w, h = cv2.boundingRect(contour)
-            if w > self. max_width: 
+            if w > self.max_width:
                 continue
             
             centroid_x = x + w // 2
@@ -238,7 +233,7 @@ class TrafficCounter:
 
 
 
-class TrafficVisualizer:
+class TrafficVisualizer: 
     """Solo se encarga de visualizar los datos"""
     
     LINE_COLOR = (255, 255, 0)
@@ -276,18 +271,18 @@ class TrafficVisualizer:
             )
         
         # Dibujar líneas
-        for line in lines. values():
+        for line in lines.values():
             cv2.line(
                 frame,
                 (line.x1, line.y1),
-                (line.x2, line. y2),
+                (line.x2, line.y2),
                 TrafficVisualizer.LINE_COLOR,
                 3,
             )
             
             cv2.putText(
                 frame,
-                f"Carril {line.id + 1}: {line.vehicle_count}",
+                f"Carril {line.id + 1}:  {line.vehicle_count}",
                 (line.x1, line.y1 - 15),
                 font,
                 0.7,
