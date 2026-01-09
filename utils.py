@@ -282,7 +282,7 @@ class TrafficVisualizer:
             
             cv2.putText(
                 frame,
-                f"Carril {line.id + 1}:  {line.vehicle_count}",
+                f"Carril {line.id + 1}: {line.vehicle_count}",
                 (line.x1, line.y1 - 15),
                 font,
                 0.7,
