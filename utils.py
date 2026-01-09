@@ -199,7 +199,7 @@ class TrafficCounter:
                     car = line.find_matching_car(centroid_x, centroid_y)
                     
                     if car is not None:
-                        line. update_car(car, centroid_x, centroid_y, self.frames_counter, fps)
+                        line.update_car(car, centroid_x, centroid_y, self.frames_counter, fps)
                     else:
                         line.add_car(centroid_x, centroid_y, self.frames_counter)
     
