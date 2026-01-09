@@ -53,11 +53,11 @@ class Line:
     
     def __init__(self, line_id, x1, y1, x2, y2, margin=10):
         self.id = line_id
-        self. x1 = x1
+        self.x1 = x1
         self.y1 = y1
         self.x2 = x2
         self.y2 = y2
-        self. margin = margin
+        self.margin = margin
         
         # Tracking de vehículos en esta línea
         self.vehicle_count = 0
@@ -74,7 +74,7 @@ class Line:
     
     def find_matching_car(self, x, y, distance_threshold=50):
         """Busca un car existente cerca de (x, y)"""
-        for car_id, car in self. cars.items():
+        for car_id, car in self.cars.items():
             if car.distance_to(x, y) < distance_threshold:
                 return car
         return None
@@ -101,7 +101,7 @@ class Line:
             if car.is_expired(current_frame, max_tracking)
         ]
         for car_id in expired_ids:
-            del self. cars[car_id]
+            del self.cars[car_id]
     
     def get_average_speed(self):
         """Obtiene la velocidad media en esta línea"""
@@ -112,7 +112,7 @@ class Line:
         return {
             "line_id": self.id,
             "count": self.vehicle_count,
-            "average_speed": self. get_average_speed(),
+            "average_speed": self.get_average_speed(),
             "total_speeds_recorded": len(self.speeds)
         }
     
@@ -122,7 +122,7 @@ class VehicleDetector:
     
     def __init__(self, min_area=500, max_width=420):
         self.min_area = min_area
-        self. max_width = max_width
+        self.max_width = max_width
         self.bg_subtractor = cv2.createBackgroundSubtractorMOG2(
             history=300, varThreshold=50, detectShadows=False
         )
@@ -180,7 +180,7 @@ class TrafficCounter:
         self.frames_counter += 1
         
         # 1. Detectar
-        mask, detections = self. detector.detect(frame)
+        mask, detections = self.detector.detect(frame)
         
         # 2. Trackear
         self._update_tracks(detections, fps)
